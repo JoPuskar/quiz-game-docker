@@ -141,7 +141,7 @@ def run_quiz(questions):
         response_time = end_time - start_time
         print(f"Time taken: {response_time: .2f} seconds\n")
 
-    print(f"Your final score is: {score}/{len(QUESTIONS)}")
+    print(f"Your final score is: {score}/{len(questions)}")
     return score
 
 # Save the results to a file
