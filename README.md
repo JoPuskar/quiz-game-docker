@@ -135,6 +135,11 @@ The `-it` flag in the `docker run` command enables interactive mode and allocate
    
    ![Screenshot (9)](https://github.com/user-attachments/assets/45686682-4580-408b-83fb-6a2a2f605e7f)
 
+   All tags
+   
+   ![Screenshot (10)](https://github.com/user-attachments/assets/f39879fa-a9d5-44d1-b5d8-c52f0526c055)
+
+
 ## **Folder Structure**
 ```
 quiz-game-docker/
