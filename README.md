@@ -4,6 +4,7 @@ This project demonstrates how to create a Python console application (a simple q
 ## **Table of Contents**
 - [Setup Instructions](#setup-instructions)
 - [Usage Examples](#usage-examples)
+- [Versioning and Tags](#versioning-and-tags)
 - [Explanation of Docker Concepts Used](#explanation-of-docker-concepts-used)
 - [Screenshots](#screenshots)
 - [Folder Structure](#folder-structure)
@@ -46,6 +47,60 @@ After completing the quiz, check the `results/quiz_results.txt` file:
 cat results/quiz_results.txt
 ```
 
+## **Versioning and Tags**
+To ensure proper versioning, we use **Docker tags** to manage different releases of the project.
+
+### **Tagging the Docker Image Properly**
+Each build should have a version tag:
+```sh
+docker build -t quiz-game:1.0 .
+```
+We also create additional tags:
+```sh
+# Tag the image with "latest"
+docker tag quiz-game:1.0 quiz-game:latest
+
+# Tag the image for "staging"
+docker tag quiz-game:1.0 quiz-game:staging
+```
+
+### **Pushing Tagged Versions to Docker Hub**
+1. **Login to Docker Hub**  
+   ```sh
+   docker login
+   ```
+2. **Tag the image with your Docker Hub username**  
+   ```sh
+   docker tag quiz-game:1.0 your-dockerhub-username/quiz-game:1.0
+   ```
+   
+3. **Push the tagged image**  
+   ```sh
+   docker push your-dockerhub-username/quiz-game:1.0
+   docker push your-dockerhub-username/quiz-game:latest
+   ```
+
+### **Using Tags in `docker-compose.yml`**
+If using **Docker Compose**, specify the version tag inside `docker-compose.yml`:
+```yaml
+version: '3'
+services:
+  quiz-game:
+    image: your-dockerhub-username/quiz-game:1.0
+    ports:
+      - "5000:5000"
+```
+
+### **Pulling Specific Versions**
+When running a container, specify the correct tag:
+```sh
+# Run version 1.0
+docker run -it quiz-game:1.0
+
+# Run the latest version
+docker run -it quiz-game:latest
+```
+
 ## **Explanation of Docker Concepts Used**
 
 ### **1. Dockerfile**
@@ -72,9 +127,13 @@ The `-it` flag in the `docker run` command enables interactive mode and allocate
    ![Screenshot (6)](https://github.com/user-attachments/assets/a463981f-3aa8-404c-944b-6469e1618c86)
    ![Screenshot7](https://github.com/user-attachments/assets/6bd6acb4-97a4-46bc-90b8-a915b10b4af2)
 
-3. Quiz Results File
+2. Quiz Results File
    
    ![Screenshot (8)](https://github.com/user-attachments/assets/42155bc5-a9f8-46d3-bbdd-fced4c5aa9aa)
+
+3. Versioning and Tags
+   
+   ![Screenshot (9)](https://github.com/user-attachments/assets/45686682-4580-408b-83fb-6a2a2f605e7f)
 
 ## **Folder Structure**
 ```
@@ -82,8 +141,8 @@ quiz-game-docker/
 ├── quiz_game.py          # Python quiz game script
 ├── Dockerfile            # Dockerfile for containerization
 ├── README.md             # Documentation
-├── results/              # Directory for quiz results (created after running the container)
-└── screenshots/          # Screenshots of the application running
+└── results/              # Directory for quiz results (created after running the container)
 ```
 
 Enjoy the quiz game! 🚀
+
